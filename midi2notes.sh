@@ -1,4 +1,6 @@
+#!/bin/sh
 INPUT_DIRECTORY=$1
+
 SEQUENCES_TFRECORD=/tmp/notesequences.tfrecord
 
 convert_dir_to_note_sequences \
