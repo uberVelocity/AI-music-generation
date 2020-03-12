@@ -27,3 +27,10 @@ def train_model(checkpoint):
 
     # Model finished training
     print('Model finished training and saved as checkpoint at /tmp/music_vae/train')
+    print('Model locations:')
+    get_model_location()
+
+def get_model_location():
+    cat_location = 'cat /tmp/music_vae/train/checkpoint'
+    subprocess.call(cat_location.split())
+
