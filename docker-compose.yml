@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  python_env:
+    container_name: python_env
+    build: 
+      context: .
+      dockerfile: test_container/Dockerfile
+
