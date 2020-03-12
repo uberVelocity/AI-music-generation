@@ -1,43 +1,29 @@
-import magenta
-import magenta.music as mm
-import tensorflow
 import sys
-import subprocess
 import os.path
-from os import path
+import cfg
+import train
 
 # Import dependencies.
 from magenta.models.music_vae import configs
 from magenta.models.music_vae.trained_model import TrainedModel
 
-# Parse config file input for pre-trained MusicVAE network.
-if len(sys.argv) != 2:
-    print('Please specify a trained configuration parameter as the single argument for this script.\n For a full list of parameters, check out https://github.com/tensorflow/magenta/tree/master/magenta/models/music_vae#generate-script-w-pre-trained-models')
-    exit()
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print('Please specify a mode from the list: [<train> <test>].\nIf running in <test> mode, optional checkpoint parameter <checkpoint> can be passed. Current default checkpoint is ', cfg.default_checkpoint)
+        exit()
+    if sys.argv[1] == 'train':
+        print('Preparing to train...')
 
-# Check whether MusicVAE run folder exists
-if not path.exists('/tmp/music_vae'):
-    print('Attempting to create run folders for MusicVAE and MelodyRNN')
-    # Attempt to create necessary folders
-    with open('../mkdir_run_dirs.sh', 'rb') as file:
-        script = file.read()
-    rc = subprocess.call(script, shell=True)
+        # Parse config file input for pre-trained MusicVAE network.
+        checkpoint = cfg.default_checkpoint
+        if len(sys.argv) == 3:
+            checkpoint = sys.argv[2]
+        else:
+            print('Please specify a trained configuration parameter as the single argument.\nFor a full list of parameters, check out https://github.com/tensorflow/magenta/tree/master/magenta/models/music_vae#generate-script-w-pre-trained-models')
+            print('Using default: ', checkpoint)
+        print('Calling train model...')
+        train.train_model(checkpoint)
+    if sys.argv[1] == 'test':
+        print('Preparing to test...')
 
-
-
-# Start training using specified file.
-config_file = sys.argv[1]
-print('Starting training using ' + config_file + ' config file...')
-train_vae_model = "music_vae_train --config=" + config_file + " --run_dir /tmp/music_vae --mode train --examples_path=/tmp/notesequences.tfrecord"
-
-# Attempt to fork new process
-process = subprocess.Popen(train_vae_model.split(), stdout=subprocess.PIPE)
-output, error = process.communicate()
-
-
-# Initialize the model.
-print("Training music VAE...")
-
-
-# music_vae = TrainedModel(configs.CONFIG_MAP['cat-mel_2bar_big'], batch_size = 4)
 print('Done!')

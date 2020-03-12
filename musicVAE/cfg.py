@@ -1,0 +1,1 @@
+default_checkpoint = 'cat-mel_2bar_big'
