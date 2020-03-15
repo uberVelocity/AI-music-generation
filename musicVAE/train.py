@@ -18,7 +18,7 @@ def train_model(checkpoint):
 
     # Start training using specified file.
     print('Starting training using ' + checkpoint + ' checkpoint file...')
-    train_vae_model = "music_vae_train --config=" + checkpoint + " --run_dir /tmp/music_vae --mode train --examples_path=/tmp/notesequences.tfrecord"
+    train_vae_model = "music_vae_train --config=" + checkpoint + " --run_dir=/tmp/music_vae/ --mode=train --examples_path=/tmp/notesequences.tfrecord"
 
     # Attempt to fork new process and start training
     print('Train subprocess fired...')
