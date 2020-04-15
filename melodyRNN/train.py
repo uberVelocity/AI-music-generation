@@ -15,7 +15,7 @@ def train_model(model):
 
     # Start training using specified model: basic, mono, lookback or attention
     print('Training using  ' + model )
-    train_rnn = "melody_rnn_train --config=" + model + "_rnn --run_dir=/tmp/melody_rnn/ --sequence_example_file=/tmp/notesequences.tfrecord --hparams=batch_size=64,rnn_layer_sizes=[64,64] --num_training_steps=100"
+    train_rnn = "melody_rnn_train --config=" + model + "_rnn --run_dir=/tmp/melody_rnn --sequence_example_file=/tmp/notesequences.tfrecord --hparams=batch_size=64,rnn_layer_sizes=[64,64] --num_training_steps=100"
 
     # Attempt to fork new process and start training
     print('Train subprocess fired...')

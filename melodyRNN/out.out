@@ -1,0 +1,10 @@
+Preparing to train...
+Please specify the model RNN: basic, mono, lookback or attention, as the single argument.
+For a description of the models, check out https://github.com/tensorflow/magenta/tree/master/magenta/models/melody_rnn
+Using default model: Basic RNN 
+Calling train model...
+Training using  basic
+Train subprocess fired...
+Model finished training /tmp/melody_rnn/train
+Model locations:
+Done!

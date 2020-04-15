@@ -33,4 +33,3 @@ def train_model(checkpoint):
 def get_model_location():
     cat_location = 'cat /tmp/music_vae/train/checkpoint'
     subprocess.call(cat_location.split())
-
