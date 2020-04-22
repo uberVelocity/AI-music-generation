@@ -5,6 +5,7 @@ import os
 import sys
 import generate
 import train
+import create_sequence_examples
 
 if __name__ == "__main__":
     if __name__ == "__main__":
@@ -16,11 +17,17 @@ if __name__ == "__main__":
 
             if len(sys.argv) == 3:
                 model = sys.argv[2]
+                print("Model:", model)
             else:
-                print(
-                    'Please specify the model RNN: basic, mono, lookback or attention, as the single argument.\nFor a description of the models, check out https://github.com/tensorflow/magenta/tree/master/magenta/models/melody_rnn')
+                print('Please specify the model RNN: basic, mono, lookback or attention, as the single argument.'
+                    '\nFor a description of the models, check out '
+                    'https://github.com/tensorflow/magenta/tree/master/magenta/models/melody_rnn')
                 print('Using default model: Basic RNN ')
                 model = 'basic'
+
+            print('Preparing data set...')
+            create_sequence_examples.create_examples(model)
+
             print('Calling train model...')
             train.train_model(model)
 
