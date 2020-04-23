@@ -1,0 +1,3 @@
+model_checkpoint_path: "/tmp/melody_rnn/train/model.ckpt-1"
+all_model_checkpoint_paths: "/tmp/melody_rnn/train/model.ckpt-0"
+all_model_checkpoint_paths: "/tmp/melody_rnn/train/model.ckpt-1"

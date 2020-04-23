@@ -20,10 +20,10 @@ if __name__ == "__main__":
                 print("Model:", model)
             else:
                 print('Please specify the model RNN: basic, mono, lookback or attention, as the single argument.'
-                    '\nFor a description of the models, check out '
-                    'https://github.com/tensorflow/magenta/tree/master/magenta/models/melody_rnn')
-                print('Using default model: Basic RNN ')
-                model = 'basic'
+                      '\nFor a description of the models, check out '
+                      'https://github.com/tensorflow/magenta/tree/master/magenta/models/melody_rnn')
+                print('Using default model: Attention RNN ')
+                model = 'attention'
 
             print('Preparing data set...')
             create_sequence_examples.create_examples(model)
@@ -33,6 +33,6 @@ if __name__ == "__main__":
 
         if sys.argv[1] == 'generate':
             print('Preparing to generate...')
-            model = 'basic'
-            generate.generate_music()
+            model = 'attention'
+            generate.generate_music(model)
     print('Done!')

@@ -1,6 +1,8 @@
 #Train a model
 import tensorflow
 import subprocess
+import os
+import shutil
 from os import path
 import magenta
 
@@ -14,6 +16,23 @@ def train_model(model):
         with open('../mkdir_run_dirs.sh', 'rb') as file:
             script = file.read()
         rc = subprocess.call(script, shell=True)
+
+    # Make sure there are no older checkpoints in the train folder
+    # If so, relocate to another folder
+    if path.exists('/tmp/melody_rnn/train'):
+        train = '/tmp/melody_rnn/train'
+        previous = '/tmp/melody_rnn/old_checkpoints'
+
+        # Remove older contents of previous / Or save them if you need them!
+        if path.exists(previous):
+            shutil.rmtree(previous)
+        try:
+            os.mkdir(previous)
+        except OSError:
+            print("Creation of the directory %s failed" % previous)
+
+        for f in os.listdir(train):
+            shutil.move(os.path.join(train, f), previous)
 
     # Start training using specified model: basic, mono, lookback or attention
     print('Training using  ' + model)
