@@ -1,13 +1,24 @@
 import subprocess
 import sys
 import magenta
+import os
+from os import path
+import shutil
 
-def generate_music():
-    generate = 'melody_rnn_generate --config=lookback_rnn --run_dir=/tmp/melody_rnn/ --output_dir=generated_20 --num_outputs=10 --num_steps=128 --hparams=batch_size=64,rnn_layer_sizes=[64,64] --primer_melody=[60]'
-    #generate = 'melody_rnn_generate --config=basic_rnn --bundle_file=basic_rnn.mag --output_dir=generated --num_outputs=10 --num_steps=128 --primer_melody=[60]'
+
+def generate_music(model):
+
+    # Remove older files from generated folder / Or save them (manually) if needed!
+    directory = os.getcwd() + '/generated'
+    if path.exists(directory):
+        shutil.rmtree(directory)
+
+    generate = 'melody_rnn_generate --config=' + model + '_rnn ' \
+               '--run_dir=/tmp/melody_rnn/ --output_dir=' + directory + ' ' \
+               '--num_outputs=10 --num_steps=128 ' \
+               '--hparams=batch_size=64,rnn_layer_sizes=[64,64] --primer_melody=[60]'
+
     print('Generating music...')
     process = subprocess.Popen(generate.split(), stdout=subprocess.PIPE)
     output, error = process.communicate()
 
-if __name__ == "__main__":
-    generate_music()
