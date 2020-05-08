@@ -18,14 +18,15 @@ def train_model(checkpoint):
 
     # Start training using specified file.
     print('Starting training using ' + checkpoint + ' checkpoint file...')
-    train_vae_model = "music_vae_train --config=" + checkpoint + " --run_dir=/tmp/music_vae/ --mode=train --examples_path=/tmp/notesequences.tfrecord"
+    train_vae_model = "music_vae_train --config=" + checkpoint + " --run_dir=/tmp/music_vae/ --mode=train --examples_path=/tmp/notesequences.tfrecord --hparams=Nlearning_rate=0.005"
 
     # Attempt to fork new process and start training
     print('Train subprocess fired...')
     process = subprocess.Popen(train_vae_model.split(), stdout=subprocess.PIPE)
     output, error = process.communicate()
 
-    # Model finished training
+    # Model finished trainingls
+    
     print('Model finished training and saved as checkpoint at /tmp/music_vae/train')
     print('Model locations:')
     get_model_location()
