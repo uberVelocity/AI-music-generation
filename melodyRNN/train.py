@@ -38,8 +38,8 @@ def train_model(model):
     print('Training using  ' + model)
     train_rnn = "melody_rnn_train --config=" + model + "_rnn --run_dir=/tmp/melody_rnn " \
                 "--sequence_example_file=/tmp/melody_rnn/sequence_examples/training_melodies.tfrecord " \
-                "--hparams=batch_size=64,rnn_layer_sizes=[64,64] " \
-                "--num_training_steps=1"
+                "--hparams=batch_size=32,rnn_layer_sizes=[64,64] " \
+                "--num_training_steps=5000"
 
     # Attempt to fork new process and start training
     print('Train subprocess fired...')
