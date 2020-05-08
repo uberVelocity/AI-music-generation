@@ -11,6 +11,12 @@ The default output file with the note sequences is saved at `/tmp/notesequences.
 ### MusicVAE
 Running the `network.py <mode> <checkpoint>` script where `mode=train <checkpoint> | generate` will execute a series of processes that `train` the network with the given `<checkpoint>`. If a `<checkpoint>` file is not specified, it will default to the one defined in the `cfg.py` script. For a full list of available configs that Magenta provides, click [here](https://github.com/tensorflow/magenta/tree/master/magenta/models/music_vae#pre-trained-checkpoints). The resulting models after training on Final Fantasy music can be found [here](https://mega.nz/file/eZcwSaJL#KlqAf2TTQrBAzN9BdW5yI4SMGOklIp7QsNznWkSNFiE).
 
+#### Training
+To train on a `notesequences.tfrecord` dataset, change the path in the `train.py` file accordingly. Take note of the output folder; that is where the model is saved.
+
+#### Generating
+Change the loading of the model to the folder where the model was saved in the training set and change the `checkpoint_file` flag in the `generate.py` file to `$TRAIN_FOLDER/model.ckpt-<number>`.
+
 ### MelodyRNN
 Run the `model.py <mode>` script with `mode=train | generate`. If mode is train, a configuration for the RNN is also expected (Configuration = `'basic', 'mono', 'lookback','attention'`). By default the configuration is set to attention_rnn. The code expects `/tmp/notesequences.tfrecord` to be present at the path. For more information on the configurations and other instructions on MelodyRNN, click [here](https://github.com/tensorflow/magenta/tree/master/magenta/models/melody_rnn).
 
