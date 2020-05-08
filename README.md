@@ -18,3 +18,10 @@ Run the `model.py <mode>` script with `mode=train | generate`. If mode is train,
 
 
 
+### Classical composer
+Music 21, Tensorflow and Python are needed to run the network.
+Put data set you want to use in midi_songs folder.
+Run lstm_bidirectional.py to train network(default 200 epochs). Run predict_bidirectional.py to generate midifiles after training.
+Some weights are in weights folder for different configurations of network.
+
+
